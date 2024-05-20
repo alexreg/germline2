@@ -149,7 +149,7 @@ class ExtendHash {
 	// Empty Match to insert into hash
 	Match m;
 	// Iterator for testing insertion
-	std::pair<boost::unordered::iterator_detail::iterator<boost::unordered::detail::ptr_node<std::pair<const unsigned int, Match > > >, bool> extend_ret;
+	std::pair<boost::unordered_map<unsigned int, Match >::iterator, bool> extend_ret;
 public:
 	ExtendHash(unsigned int);
 	// Compute pair of individuals from location indicator
