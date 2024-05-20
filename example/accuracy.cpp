@@ -26,7 +26,7 @@ void Match::addOverlap( long d , long len ) {
 	}
 }
 
-int main (int argc, char* argv[]) 
+int main (int argc, char* argv[])
 {
 
 	// cin should be <0/1> <pair> <start> <end>
@@ -36,23 +36,23 @@ int main (int argc, char* argv[])
 	Match cur_match;
 	list< Match > segments[2];
 	list< Match >::iterator segments_it[2];
-	
+
 	stringstream ss;
 	prev_pair = "";
-	
+
 	long ss_total[2];
 	bool last_pair = false;
-	
+
 	while( true ) {
 		if ( last_pair || getline( cin , line ) ) {
-		
+
 			if ( ! last_pair ) {
 				ss.clear(); ss.str( line );
 				cur_match.line = line;
 				ss >> pre >> pair >> cur_match.pos[0] >> cur_match.pos[1];
 			}
-			
-			if ( last_pair || pair != prev_pair ) {					
+
+			if ( last_pair || pair != prev_pair ) {
 				if ( prev_pair != "" ) {
 					// compute overlap
 					for ( segments_it[0] = segments[0].begin() ; segments_it[0] != segments[0].end(); segments_it[0]++ )
@@ -95,9 +95,9 @@ int main (int argc, char* argv[])
 				segments[0].clear();
 				segments[1].clear();
 			}
-			
+
 			if ( last_pair ) break;
-			
+
 			segments[ pre ].push_back( cur_match );
 			ss_total[ pre ] += cur_match.pos[1] - cur_match.pos[0];
 			prev_pair = pair;
@@ -106,4 +106,4 @@ int main (int argc, char* argv[])
 		}
 	}
 	return 1;
-}	
+}

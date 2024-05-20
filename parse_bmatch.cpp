@@ -22,7 +22,7 @@ int main (int argc, char* argv[])
 			cerr << "Usage: " << argv[0] << " [BMATCH FILE] [BSID FILE] [BMID FILE]" << endl;
 			return 0;
 	}
-	
+
 	string line, discard;
 	ifstream file_bmatch( argv[1] , ios::binary );
 	ifstream file_bsid( argv[2] );
@@ -30,7 +30,7 @@ int main (int argc, char* argv[])
 	if(!file_bmatch || !file_bsid || !file_bmid ) { cerr << "file could not be opened" << endl; return 0; }
 
 	stringstream ss;
-	
+
 	// load samples
 	vector< string > sample_id;
 	while( getline(file_bsid , line) )
@@ -38,7 +38,7 @@ int main (int argc, char* argv[])
 		sample_id.push_back( line );
 	}
 	file_bsid.close();
-	
+
 	// load markers
 	vector< Marker > marker_id;
 	Marker cur_marker;
@@ -49,7 +49,7 @@ int main (int argc, char* argv[])
 		marker_id.push_back( cur_marker );
 	}
 	file_bmid.close();
-	
+
 	// load matches
 	unsigned int pid[2];
 	unsigned int sid[2];
@@ -63,7 +63,7 @@ int main (int argc, char* argv[])
 		file_bmatch.read( (char*) &pid[1] , sizeof( unsigned int ) );
 		file_bmatch.read( (char*) &sid[0] , sizeof( unsigned int ) );
 		file_bmatch.read( (char*) &sid[1] , sizeof( unsigned int ) );
-		
+
 		cout
 			<< sample_id[ pid[0] ] << '\t'
 			<< sample_id[ pid[1] ] << '\t'
